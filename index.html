@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#SriKit</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- <div class="curtain-wrapper" id="curtain">
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+</div> -->
+
+<!-- INTRO CURTAIN -->
+<div class="curtain-overlay" id="curtain">
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+  <div class="enter-text" onclick="openInvitation()">
+    Click to Enter
+  </div>
+</div>
+
+<!-- MUSIC BUTTON -->
+<button class="music-btn" onclick="toggleMusic()">🔊</button>
+<audio id="bgMusic" loop>
+  <source src="assets/bg-music.mp3" type="audio/mp3">
+</audio>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="invite-text">
+      YOU ARE CORDIALLY INVITED TO CELEBRATE THE WEDDING OF
+    </p>
+
+    <h1 class="names">
+      Srishti <br>&<br> Ankit
+    </h1>
+
+    <p class="desc">
+      WE WOULD LIKE TO INVITE YOU TO CELEBRATE WITH US THE MOST SPECIAL DAY OF OUR LIVES. IT WOULD BE AN HONOR TO HAVE YOU PRESENT AT THIS IMPORTANT MOMENT.
+    </p>
+
+    <div class="scroll-text">Scroll ↓</div>
+  </div>
+</section>
+
+<!-- REVEAL SECTION -->
+<section class="reveal">
+  <h2>Reveal</h2>
+  <p class="scratch-sub">SCRATCH TO DISCOVER THE DATE</p>
+
+  <div class="date-wrapper">
+    <div class="date-circle">
+      <canvas id="dayCanvas"></canvas>
+      <span>1</span>
+    </div>
+
+    <div class="date-circle">
+      <canvas id="monthCanvas"></canvas>
+      <span>APRIL</span>
+    </div>
+
+    <div class="date-circle">
+      <canvas id="yearCanvas"></canvas>
+      <span>2026</span>
+    </div>
+  </div>
+
+  <p class="married-text">We’re getting married!</p>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section">
+  <h2>Countdown</h2>
+
+  <div class="count-boxes">
+    <div>
+      <span id="days">0</span>
+      <p>DAYS</p>
+    </div>
+
+    <div>
+      <span id="hours">0</span>
+      <p>HOURS</p>
+    </div>
+
+    <div>
+      <span id="minutes">0</span>
+      <p>MIN</p>
+    </div>
+
+    <div>
+      <span id="seconds">0</span>
+      <p>SEC</p>
+    </div>
+  </div>
+
+  <p class="until">until the big day</p>
+</section>
+
+<!-- VENUE SECTION -->
+<section class="venue-section fade-section">
+
+  <h2 class="section-title">The Celebration</h2>
+
+  <div class="venue-container">
+
+    <!-- Ceremony -->
+    <div class="venue-card">
+      
+      <div class="venue-image">
+        <img src="assets/gurudwara.png" alt="Gurudwara Illustration">
+      </div>
+
+      <h3>Wedding Ceremony</h3>
+      <p class="venue-time">1 April 2026 · 10:00 AM</p>
+      <p class="venue-name">Guru Nanak Darbar</p>
+      <p class="venue-address">
+        F-164<br>
+        Rajouri Garden, New Delhi 110027
+      </p>
+
+      <a 
+      href="https://www.google.com/maps/dir//Guru+Nanak+Darbar,+shop+no+164,+Block+F,+Rajouri+Garden,+New+Delhi,+Delhi,+110027/@28.6226829,77.2359549,10z/data=!4m9!4m8!1m0!1m5!1m1!1s0x390d036d0f3e0671:0xec368437037ae11f!2m2!1d77.1229129!2d28.6467038!3e0?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D" 
+      class="venue-btn">View on Map</a>
+    </div>
+
+    <!-- Lunch -->
+    <div class="venue-card">
+
+      <div class="venue-image">
+        <img src="assets/banquet.png" alt="Banquet Hall Illustration">
+      </div>
+
+      <h3>Followed by Lunch</h3>
+      <p class="venue-time">1 April 2026 · 12:30 PM</p>
+      <p class="venue-name">Starland</p>
+      <p class="venue-address">
+        A98, Mayapuri Industrial Area Phase II<br>
+        New Delhi, 110064
+      </p>
+
+      <a href="https://www.google.com/maps?gs_lcrp=EgZjaHJvbWUyBggAEEUYOTISCAEQLhgNGK8BGMcBGIAEGI4FMggIAhAAGA0YHjIICAMQABgNGB4yCAgEEAAYDRgeMggIBRAAGA0YHjIICAYQABgNGB4yCAgHEAAYDRgeMggICBAAGA0YHtIBCDQzMTNqMGo3qAIAsAIA&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KcOgjwpaAw05MbyVvsQS_hVE&daddr=A98,+Mayapuri+Industrial+Area+Phase+II,+Mayapuri,+New+Delhi,+Delhi,+110064" class="venue-btn">View on Map</a>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="thank-you-section">
+  <div class="thank-you-card">
+    <h2>Thank You</h2>
+    <p>
+      THANK YOU FOR BEING A PART OF OUR JOURNEY AND CELEBRATING THIS SPECIAL MOMENT WITH US. YOUR PRESENCE, LOVE, AND BLESSINGS MEAN THE WORLD TO US.
+    </p>
+  </div>
+</section>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</body>
+</html>
