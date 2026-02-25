@@ -107,6 +107,35 @@ function toggleMusic(){
 /* ============================= */
 /* SCRATCH EFFECT FUNCTION */
 /* ============================= */
+// Keep track of how many are revealed
+let completedScratches = 0;
+const totalScratches = 3;
+
+function checkAllDone() {
+  completedScratches++;
+  if (completedScratches === totalScratches) {
+    startConfetti(); // Your confetti function name
+  }
+}
+
+// Example Confetti function (using canvas-confetti library or similar)
+function startConfetti() {
+  const container = document.getElementById('confetti-container');
+  const player = document.getElementById('confetti-player');
+
+  // 1. Show the container
+  container.style.display = 'block';
+
+  // 2. Play the animation
+  player.play();
+
+  // 3. Optional: Hide it again after 4 seconds so it doesn't block the screen
+  setTimeout(() => {
+    container.style.opacity = '0';
+    container.style.transition = 'opacity 1s ease';
+    setTimeout(() => { container.style.display = 'none'; }, 1000);
+  }, 4000);
+}
 
 function makeScratch(canvasId){
 
@@ -158,7 +187,11 @@ function makeScratch(canvasId){
   }
 
   function reveal(){
+    if (revealed) return; // Prevent double-counting
     revealed = true;
+
+    // Call the tracker
+    checkAllDone();
 
     // unlock scroll
     document.body.classList.remove("no-scroll");
@@ -168,7 +201,7 @@ function makeScratch(canvasId){
 
     setTimeout(()=>{
       canvas.style.display = "none";
-    },800);
+    }, 800);
   }
 
   /* =========================

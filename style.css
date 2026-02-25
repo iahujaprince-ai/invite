@@ -69,34 +69,93 @@ body{
 /* HERO SECTION */
 /* ============================= */
 
-.hero{
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+  
+  /* Background Image Logic */
+/* background-color: #f8f6f3; */
+background-color: #FFFFFF;
+
+    background-image: url('assets/curtains2.png'); 
+    
+  background-size: cover;        /* Fills the whole screen */
+  background-position: center;   /* Keeps the couple centered */
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* Better for mobile performance than 'fixed' */
+  
+  color: black; /* Ensures all text is white against the image */
+}
+
+/* Optional: Add a subtle glow to the names to make them "pop" */
+.names {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 500;
+  margin: 20px 0;
+  color: #6e2a1e;
+  /* text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); */
+}
+
+/* .hero{
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
   padding:60px 20px;
-}
+} */
 
 .hero-content{
-  max-width:350px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* THIS CONTROLS THE EQUAL GAPS */
+  gap: 30px;
 }
 
 .invite-text{
   font-size:11px;
   letter-spacing:2px;
+  width: 100px;
+  align-content: center;
 }
 
-.names{
+/* .names{
   font-family:'Playfair Display', serif;
   font-size:42px;
   font-weight:500;
   margin:20px 0;
+} */
+
+.desc {
+  font-size: 18px;            /* Slightly smaller than 20px is often more readable for long text */
+  line-height: 1.6;           /* Increased for better breathing room between lines */
+  font-weight: 600;           /* Corrected from 'bold: 600' */
+  color: #6e2a1e;
+  
+  /* Modern visibility enhancements */
+  max-width: 90%;             /* Prevents text from hitting the edges of mobile screens */
+  margin: 0 auto;             /* Centers the text block */
+  letter-spacing: 0.3px;      /* Subtle spacing makes it feel more premium */
+  text-wrap: balance;         /* Prevents awkward single words on a new line (Modern browsers) */
+  
+  /* Optional: subtle text-shadow for a 'pressed' look */
+  text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.5);
 }
 
-.desc{
-  font-size:15px;
-  line-height:1.5;
+@media (max-width: 480px) {
+  .desc {
+    font-size: 16px; /* Slightly smaller for very narrow phones like iPhone SE */
+    line-height: 1.5;
+  }
 }
 
 .scroll-text{
@@ -206,51 +265,69 @@ body{
 
 /* Lock scroll initially */
 
-
 /* Curtain Overlay */
-.curtain-overlay{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  overflow:hidden;
+/* Curtain Overlay */
+.curtain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  pointer-events: none; /* Allows clicking content behind once open */
+}
+
+/* Enable clicks only when curtains are closed */
+.curtain-overlay:not(.open) .enter-text {
+  pointer-events: auto;
 }
 
 /* Curtains */
-.curtain{
-  position:absolute;
-  top:0;
-  width:50%;
-  height:100%;
-  transition: transform 1.8s cubic-bezier(.77,0,.18,1);
-
+.curtain {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  transition: transform 1.8s cubic-bezier(.77, 0, .18, 1);
+  
   background: repeating-linear-gradient(
     90deg,
     #6e2a1e 0px,
-    #6e2a1e 40px,
-    #5c2218 60px,
-    #6e2a1e 80px
+    #6e2a1e 30px,
+    #5c2218 45px,
+    #6e2a1e 60px
   );
-
-  background-size:120px 100%;
+  background-size: 80px 100%;
 }
 
-.curtain.left{
-  left:0;
-  box-shadow: inset -30px 0 60px rgba(0,0,0,0.5);
+.curtain.left {
+  left: 0;
+  transform-origin: left center; /* Important: keeps it attached to the left wall */
+  box-shadow: inset -20px 0 40px rgba(0,0,0,0.6);
 }
 
-.curtain.right{
-  right:0;
-  box-shadow: inset 30px 0 60px rgba(0,0,0,0.5);
+.curtain.right {
+  right: 0;
+  transform-origin: right center; /* Important: keeps it attached to the right wall */
+  box-shadow: inset 20px 0 40px rgba(0,0,0,0.6);
 }
 
-/* Open animation */
-.curtain-overlay.open .left{
-  transform:translateX(-100%);
+/* --- THE "WINDOW" EFFECT --- */
+
+.curtain-overlay.open .left {
+  /* Move only 55% out and squash to 45% width */
+  /* This leaves about 1/4 of the curtain visible on the side */
+  transform: translateX(-55%) scaleX(0.45);
 }
 
-.curtain-overlay.open .right{
-  transform:translateX(100%);
+.curtain-overlay.open .right {
+  /* Move only 55% out and squash to 45% width */
+  transform: translateX(55%) scaleX(0.45);
+}
+
+/* Hide the button/text */
+.curtain-overlay.open .enter-text {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
 }
 
 /* Enter Button */
@@ -312,10 +389,12 @@ body{
 }
 
 .venue-time{
-  font-size:14px;
-  letter-spacing:1px;
-  margin-bottom:20px;
-  color:#999;
+  font-size:16px;
+  /* letter-spacing:1px; */
+  margin-bottom:15px;
+  color:#460d03;
+  font-weight:1000;
+  font-family:Arial, Helvetica, sans-serif
 }
 
 .venue-name{
@@ -325,7 +404,7 @@ body{
 }
 
 .venue-address{
-  font-size:14px;
+  font-size:16px;
   line-height:1.6;
   margin-bottom:25px;
 }
@@ -337,7 +416,7 @@ body{
   color:#6e2a1e;
   text-decoration:none;
   border-radius:30px;
-  font-size:14px;
+  font-size:16px;
   transition: all 0.3s ease;
 }
 
@@ -354,11 +433,11 @@ body{
 }
 
 /* Venue Image */
-.venue-image img{
+/* .venue-image img{
   width:100%;
   margin-bottom:25px;
   opacity:0.9;
-}
+} */
 
 .venue-image img{
   width:100%;
@@ -366,6 +445,7 @@ body{
   object-fit:contain;
   display:block;
   margin:0 auto;
+  mix-blend-mode: multiply; 
 }
 
 body.no-scroll {
@@ -375,35 +455,137 @@ body.no-scroll {
 }
 
 /* =========================
-   THANK YOU SECTION
+   THANK YOU SECTION - ELEGANT
 ========================= */
 
-.thank-you-section{
-  padding: 80px 20px;
-  background: #f8f5f1; /* soft warm background */
+.thank-you-section {
+  padding: 50px 20px;
+  background: #f8f6f3;
   display: flex;
   justify-content: center;
 }
 
-.thank-you-card{
-  max-width: 600px;
+.thank-you-card {
+  max-width: 550px;
   width: 100%;
-  background: maroon;
-  padding: 50px 30px;
-  border-radius: 40px 40px 10px 10px; /* slightly curved top */
-  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  background: #6e2a1e; /* Thick Maroon Border */
+  padding: 25px;       /* Thickness of the maroon frame */
+  border-radius: 35px; /* Smooth rounded corners from your image */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.thank-you-inner {
+  background: white;
+  padding: 60px 40px;
+  border-radius: 20px;
   text-align: center;
+  /* Adding a thin delicate inner line for a "stationery" look */
+  border: 1px solid rgba(110, 42, 30, 0.15);
 }
 
-.thank-you-card h2{
-  font-size: 32px;
+.thank-you-inner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: #6e2a1e;
   margin-bottom: 20px;
-  color: white; /* your theme color */
-  letter-spacing: 1px;
+  font-style: italic;
+  font-weight: 500;
 }
 
-.thank-you-card p{
-  font-size: 16px;
-  line-height: 1.8;
-  color: white;
+.thank-you-inner p {
+  font-family: 'Playfair Display', serif; /* Script-style serif */
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin-bottom: 35px;
+  font-style: italic;
 }
+
+.couple-names {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #6e2a1e;
+  font-weight: 600;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .thank-you-inner h2 { font-size: 36px; }
+  .couple-names { font-size: 26px; }
+  .thank-you-card { padding: 15px; }
+}
+
+/* 1. Base Styles (Mobile Default) */
+.sa-button {
+  /* Use relative units for better scaling on mobile */
+  width: 40vw; 
+  max-width: 175px; /* Smaller default for mobile */
+  height: auto;
+  aspect-ratio: 1 / 1;
+  
+  border-radius: 50%; /* 50% is a perfect circle */
+  opacity: 0.9;
+  display: block;
+  margin: 0 auto;
+  
+  /* Smooth, subtle bobbing */
+  animation: bobbing 2.5s ease-in-out infinite;
+  
+  /* Critical for mobile: removes the grey tap highlight on some browsers */
+  -webkit-tap-highlight-color: transparent; 
+}
+
+/* 2. Desktop Scaling (Media Query) */
+@media (min-width: 768px) {
+  .sa-button {
+    max-width: 200px; /* Scale up for larger screens */
+  }
+}
+
+/* 3. The Animation */
+@keyframes bobbing {
+  0%, 100% {
+    /* transform: translateY(0); */
+    transform: translateX(-10px);
+  }
+  50% {
+    /* Subtle 10px move is enough for mobile without causing eye strain */
+    /* transform: translateY(-10px); */
+    transform: translateX(10px);
+  }
+}
+
+/* 4. Feedback for Touch/Click */
+.sa-button:active {
+  transform: scale(0.92);
+  opacity: 1;
+  transition: transform 0.1s;
+}
+
+.ganesh-ji {
+  width: 50%;
+  height: auto;
+  
+  /* THIS LINE IS THE FIX */
+  mix-blend-mode: multiply; 
+  
+  /* Keep your other styles */
+  opacity: 0.9;
+  animation: divineFloat 4s ease-in-out infinite;
+}
+
+@keyframes divineFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05); /* Gentle lift and slight pulse */
+  }
+}
+
+/* Desktop adjustment
+@media (min-width: 768px) {
+  .ganesh-ji {
+    width: 100px;
+  }
+} */

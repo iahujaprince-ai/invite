@@ -21,7 +21,7 @@
   <div class="curtain left"></div>
   <div class="curtain right"></div>
   <div class="enter-text" onclick="openInvitation()">
-    Click to Enter
+    <img class="sa-button" src="assets/SA_button.jpg" alt="Tap-To-Open">
   </div>
 </div>
 
@@ -34,9 +34,12 @@
 <!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-content">
-    <p class="invite-text">
+    <!-- <p class="invite-text">
       YOU ARE CORDIALLY INVITED TO CELEBRATE THE WEDDING OF
-    </p>
+    </p> -->
+    <div class="ganesh-container">
+      <img class="ganesh-ji" src="assets/ganeshji.png" alt="shri-ganesh-ji">
+    </div>
 
     <h1 class="names">
       Srishti <br>&<br> Ankit
@@ -74,6 +77,7 @@
 
   <p class="married-text">We’re getting married!</p>
 </section>
+
 
 <!-- COUNTDOWN -->
 <section class="countdown-section">
@@ -113,14 +117,16 @@
 
     <!-- Ceremony -->
     <div class="venue-card">
+
+      <h3>Wedding Ceremony</h3>
       
       <div class="venue-image">
         <img src="assets/gurudwara.png" alt="Gurudwara Illustration">
       </div>
 
-      <h3>Wedding Ceremony</h3>
-      <p class="venue-time">1 April 2026 · 10:00 AM</p>
-      <p class="venue-name">Guru Nanak Darbar</p>
+      
+      <p class="venue-name">GURU NANAK DARBAR</p>
+      <p class="venue-time">1 April 2026 10 AM</p>
       <p class="venue-address">
         F-164<br>
         Rajouri Garden, New Delhi 110027
@@ -134,13 +140,14 @@
     <!-- Lunch -->
     <div class="venue-card">
 
+      <h3>Followed by Lunch</h3>
       <div class="venue-image">
         <img src="assets/banquet.png" alt="Banquet Hall Illustration">
       </div>
 
-      <h3>Followed by Lunch</h3>
-      <p class="venue-time">1 April 2026 · 12:30 PM</p>
-      <p class="venue-name">Starland</p>
+      
+      <p class="venue-name">STARLAND</p>
+      <p class="venue-time">1 April 2026 12 PM</p>
       <p class="venue-address">
         A98, Mayapuri Industrial Area Phase II<br>
         New Delhi, 110064
@@ -155,15 +162,31 @@
 
 <section class="thank-you-section">
   <div class="thank-you-card">
-    <h2>Thank You</h2>
-    <p>
-      THANK YOU FOR BEING A PART OF OUR JOURNEY AND CELEBRATING THIS SPECIAL MOMENT WITH US. YOUR PRESENCE, LOVE, AND BLESSINGS MEAN THE WORLD TO US.
-    </p>
+    <div class="thank-you-inner">
+      <h2>Thank You</h2>
+      <p>
+        For joining us on this special day. Your presence is the best gift we could receive.
+      </p>
+      <div class="couple-names">Srishti & Ankit</div>
+    </div>
   </div>
 </section>
 
+  <div id="confetti-container" style="display:none; position:fixed; inset:0; z-index:100000; pointer-events:none;">
+  <dotlottie-player 
+    id="confetti-player"
+    src="assets/Celebration.json" 
+    background="transparent" 
+    speed="1" 
+    style="width: 100%; height: 100%;" 
+    direction="1" 
+    playMode="normal">
+  </dotlottie-player>
+</div>
+
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
 </body>
 </html>
